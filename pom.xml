@@ -18,6 +18,7 @@
     <modules>
         <module>bootstrap-module</module>
         <module>user-module</module>
+        <module>product-module</module>
     </modules>
 
     <url/>
