@@ -3,14 +3,14 @@ server:
 spring:
   datasource:
     user-module:
-      jdbc-url: # your jdbc url
-      username: # your username
-      password: # your password
+      jdbc-url: jdbc:mysql://localhost:3306/
+      username: root
+      password: Az456789
       driver-class-name: com.mysql.cj.jdbc.Driver
     order-module:
-      jdbc-url: # your jdbc url
-      username: # your username
-      password: # your password
+      jdbc-url: jdbc:mysql://localhost:3306/
+      username: root
+      password: Az456789
       driver-class-name: com.mysql.cj.jdbc.Driver
   application:
     name: bootstrap-module
