@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableJpaRepositories(
-        basePackages = "com.eight.product.module.repository",
+        basePackages = "com.eight.product_module.repository",
         entityManagerFactoryRef = "productModuleEntityManagerFactory",
         transactionManagerRef = "productModuleTransactionManager"
 )
@@ -29,13 +29,14 @@ public class ProductJpaConfig {
             @Qualifier("productModuleDataSource") DataSource dataSource)
     {
         return builder.dataSource(dataSource)
-                .packages("com.eight.product.module.model")
+                .packages("com.eight.product_module.model")
                 .persistenceUnit("productModule")
                 .build();
     }
 
     @Bean(name = "productModuleTransactionManager")
-    public PlatformTransactionManager productModuleTransactionManager(EntityManagerFactory entityManagerFactory){
+    public PlatformTransactionManager productModuleTransactionManager(
+            @Qualifier("productModuleEntityManagerFactory") EntityManagerFactory entityManagerFactory){
         return new JpaTransactionManager(entityManagerFactory);
     }
 

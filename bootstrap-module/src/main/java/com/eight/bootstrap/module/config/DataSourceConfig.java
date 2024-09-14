@@ -27,6 +27,12 @@ public class DataSourceConfig {
         return DataSourceBuilder.create().build();
     }
 
+    @Bean(name = "productModuleDataSource")
+    @ConfigurationProperties(prefix = "spring.datasource.product-module")
+    public DataSource productModuleDataSource() {
+        return DataSourceBuilder.create().build();
+    }
+
     @Bean
     public EntityManagerFactoryBuilder entityManagerFactoryBuilder(
             ObjectProvider<JpaVendorAdapter> jpaVendorAdapterProvider,
