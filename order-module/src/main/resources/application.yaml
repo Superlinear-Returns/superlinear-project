@@ -27,3 +27,8 @@ logging:
         type:
           descriptor:
             sql: TRACE
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /api-docs
