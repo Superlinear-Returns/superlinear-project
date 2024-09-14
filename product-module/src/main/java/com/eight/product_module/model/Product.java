@@ -23,8 +23,8 @@ public class Product {
     private String description;
     @Column(name="CATEGORY")
     private String category;
-    @Column(name="CREATED_DATE")
-    private Date createdDate;
-    @Column(name="LAST_MODIFIED_DATE")
-    private Date lastModifiedDate;
+    @Column(name="CREATED_TIME")
+    private Date createdTime;
+    @Column(name="LAST_MODIFIED_TIME")
+    private Date lastModifiedTime;
 }

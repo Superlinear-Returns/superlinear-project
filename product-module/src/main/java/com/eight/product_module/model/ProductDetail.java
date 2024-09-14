@@ -22,6 +22,6 @@ public class ProductDetail {
     private String additionalCategories;
     @Column(name="CREATED_TIME")
     private Date createdTime;
-    @Column(name="LAST_MODIFIED_DATE")
-    private Date lastModifiedDate;
+    @Column(name="LAST_MODIFIED_TIME")
+    private Date lastModifiedTime;
 }
