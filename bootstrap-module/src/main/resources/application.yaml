@@ -1,31 +1,43 @@
 server:
   port: 8080
 spring:
+  application:
+    name: bootstrap-module
   datasource:
+
     user-module:
       jdbc-url: jdbc:mysql://localhost:3306/
       username: root
-      password: Az456789
+      password: 06494784
       driver-class-name: com.mysql.cj.jdbc.Driver
-    order-module:
-      jdbc-url: jdbc:mysql://localhost:3306/
-      username: root
-      password: Az456789
-      driver-class-name: com.mysql.cj.jdbc.Driver
-    product-module:
-      jdbc-url: jdbc:mysql://localhost:3306/
-      username: root
-      password: Az456789
-      driver-class-name: com.mysql.cj.jdbc.Driver
-  application:
-    name: bootstrap-module
-  jpa:
-    show-sql: true
-    properties:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.MySQL8Dialect
         ddl-auto: update
+
+    order-module:
+      jdbc-url: jdbc:mysql://localhost:3306/
+      username: root
+      password: 06494784
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        ddl-auto: update
+
+    product-module:
+      jdbc-url: jdbc:mysql://localhost:3306/
+      username: root
+      password: 06494784
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        ddl-auto: update
+
+  jpa:
+    show-sql: true
+
 logging:
   level:
     org:
