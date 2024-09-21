@@ -2,6 +2,7 @@ package com.eight.product_module.controller;
 
 import com.eight.product_module.model.Product;
 import com.eight.product_module.service.ProductService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +18,8 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping
+    @Operation(summary = "getProductById", description = "使用productId獲取商品")
     public ResponseEntity<Product> getProductById(@RequestParam("productId") Long productId) {
-        System.out.println("111");
         Product defaultProduct = new Product();
         return ResponseEntity.ok(productService
                 .getProductById(productId).orElse(defaultProduct));
