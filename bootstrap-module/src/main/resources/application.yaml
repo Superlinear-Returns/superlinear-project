@@ -12,6 +12,11 @@ spring:
       username: root
       password: Az456789
       driver-class-name: com.mysql.cj.jdbc.Driver
+    product-module:
+      jdbc-url: jdbc:mysql://localhost:3306/
+      username: root
+      password: Az456789
+      driver-class-name: com.mysql.cj.jdbc.Driver
   application:
     name: bootstrap-module
   jpa:
