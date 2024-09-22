@@ -1,4 +1,4 @@
-package com.eight.product_module;
+package com.eight.product.module;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.eight.product_module.model;
+package com.eight.product.module.model;
 
 import jakarta.persistence.Column;
 import lombok.Getter;

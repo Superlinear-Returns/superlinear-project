@@ -1,6 +1,6 @@
-package com.eight.product_module.repository;
+package com.eight.product.module.repository;
 
-import com.eight.product_module.model.Product;
+import com.eight.product.module.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

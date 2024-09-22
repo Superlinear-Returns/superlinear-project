@@ -1,8 +1,8 @@
-package com.eight.product_module.service.impl;
+package com.eight.product.module.service.impl;
 
-import com.eight.product_module.model.Product;
-import com.eight.product_module.repository.ProductRepository;
-import com.eight.product_module.service.ProductService;
+import com.eight.product.module.repository.ProductRepository;
+import com.eight.product.module.service.ProductService;
+import com.eight.product.module.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

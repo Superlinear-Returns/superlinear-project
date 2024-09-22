@@ -1,25 +1,27 @@
-package com.eight.product_module.model;
+package com.eight.product.module.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+@Table(name="PRODUCT_IMAGE")
+@Entity
 @Getter
 @Setter
-@Entity
-@Table(name = "PRODUCT_DETAIL")
-public class ProductDetail {
+public class Product_Image {
     @Id
-    @Column(name="PRODUCT_DETAIL_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productDetailId;
+    @Column(name="PRODUCT_IMAGE_ID")
+    private Long productImageId;
     @Column(name="PRODUCT_ID")
     private Long productId;
-    @Column(name="SPECIFICATION")
-    private String specification;
-    @Column(name="ADDITIONAL_CATEGORIES")
-    private String additionalCategories;
+    @Column(name="IMAGE_URL")
+    private String imageUrl;
+    @Column(name="IMAGE_TYPE")
+    private String imageType;
+    @Column(name="IMAGE_SORT")
+    private Integer imageSort;
     @Column(name="CREATED_TIME")
     private Date createdTime;
     @Column(name="LAST_MODIFIED_TIME")

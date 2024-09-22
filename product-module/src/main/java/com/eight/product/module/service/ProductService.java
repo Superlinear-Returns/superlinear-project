@@ -1,6 +1,6 @@
-package com.eight.product_module.service;
+package com.eight.product.module.service;
 
-import com.eight.product_module.model.Product;
+import com.eight.product.module.model.Product;
 
 import java.util.Optional;
 
