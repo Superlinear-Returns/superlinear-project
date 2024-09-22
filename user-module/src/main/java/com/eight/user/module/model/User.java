@@ -21,7 +21,7 @@ public class User {
     @Column(name = "USER_ID")
     private Integer userId;
 
-    @Column(name = "USER_NAME")
+    @Column(name = "USERNAME")
     private String userName;
 
     @Column(name = "PASSWORD")
@@ -30,18 +30,21 @@ public class User {
     @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "PHONE")
-    private String phone;
+    @Column(name = "PHONE_NUMBER")
+    private String phoneNumber;
 
-    @Column(name = "ADDRESS")
-    private String address;
+    @Column(name = "DATE_OF_BIRTH")
+    private LocalDateTime dateOfBirth;
+
+    @Column(name = "GENDER")
+    private Integer gender;
+
+    @Column(name = "LAST_LOGIN_DATE")
+    private LocalDateTime lastLoginDate;
 
     @Column(name = "CREATE_TIME")
     private LocalDateTime createTime;
 
     @Column(name = "UPDATE_TIME")
     private LocalDateTime updateTime;
-
-    @Column(name = "VERSION")
-    private Integer version;
 }

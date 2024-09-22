@@ -1,7 +1,7 @@
-package com.eight.product_module.controller;
+package com.eight.product.module.controller;
 
-import com.eight.product_module.model.Product;
-import com.eight.product_module.service.ProductService;
+import com.eight.product.module.service.ProductService;
+import com.eight.product.module.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
