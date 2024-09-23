@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.eight.bootstrap.module", "com.eight.user.module", "com.eight.order.module", "com.eight.product_module"})
+@ComponentScan(basePackages = {"com.eight.bootstrap.module", "com.eight.user.module", "com.eight.order.module", "com.eight.product.module"})
 public class BootstrapModuleApplication {
 
     public static void main(String[] args) {
