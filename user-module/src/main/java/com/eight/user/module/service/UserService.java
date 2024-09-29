@@ -1,9 +1,8 @@
 package com.eight.user.module.service;
 
-import com.eight.user.module.model.User;
-import java.util.Optional;
+import com.eight.user.module.to.RegisterTO;
 
 public interface UserService {
 
-    Optional<User> getUserById(Integer userId);
+    void register(RegisterTO registerTO);
 }

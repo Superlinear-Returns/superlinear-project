@@ -2,10 +2,11 @@ package com.eight.user.module.controller;
 
 import com.eight.user.module.model.User;
 import com.eight.user.module.service.UserService;
+import com.eight.user.module.to.RegisterTO;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/user")
@@ -18,8 +19,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
-    public ResponseEntity<User> getUserById(@RequestParam("userId") Integer userId) {
-        return ResponseEntity.ok(userService.getUserById(userId).orElse(null));
+    @PostMapping("/register")
+    public ResponseEntity<User> register(@RequestBody RegisterTO registerTO) {
+        userService.register(registerTO);
+        return ResponseEntity.ok().build();
     }
 }
