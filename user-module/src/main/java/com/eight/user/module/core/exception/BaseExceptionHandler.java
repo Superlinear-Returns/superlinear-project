@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class BaseExceptionHandler {
 
     @ExceptionHandler(BaseException.class)
-    public ResponseEntity<BaseExceptionResponseTO> handleBaseException(BaseException e) {
+    public ResponseEntity<BaseExceptionResponseTO> handleBaseExceptionToResponse(BaseException e) {
         BaseExceptionResponseTO baseExceptionResponseTO = new BaseExceptionResponseTO(e.getStatusCode(), e.getMessage());
         return new ResponseEntity<>(baseExceptionResponseTO, HttpStatus.BAD_REQUEST);
     }

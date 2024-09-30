@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RegisterTO implements Serializable {
+public class LoginTO implements Serializable {
 
     @NotBlank
     private String username;
@@ -15,9 +15,4 @@ public class RegisterTO implements Serializable {
     @NotBlank
     private String password;
 
-    private Integer gender;
-
-    private String ipAddress;
-
-    private String userAgent;
 }
