@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "USER")
-public class User {
+public class User extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class User {
     private Integer userId;
 
     @Column(name = "USERNAME")
-    private String userName;
+    private String username;
 
     @Column(name = "PASSWORD")
     private String password;
@@ -42,9 +42,4 @@ public class User {
     @Column(name = "LAST_LOGIN_DATE")
     private LocalDateTime lastLoginDate;
 
-    @Column(name = "CREATE_TIME")
-    private LocalDateTime createTime;
-
-    @Column(name = "UPDATE_TIME")
-    private LocalDateTime updateTime;
 }
