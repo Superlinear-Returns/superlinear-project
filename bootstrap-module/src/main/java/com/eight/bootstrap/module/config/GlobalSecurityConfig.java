@@ -25,7 +25,7 @@ public class GlobalSecurityConfig {
                 .csrf(csrf -> csrf
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                         .csrfTokenRequestHandler(createCsrfHandler())
-                        .ignoringRequestMatchers("/user/register", "/user/login"))
+                        .ignoringRequestMatchers("/member/register", "/member/login"))
                 .cors(cors -> cors.configurationSource(createCorsConfig()))
                 .build();
     }
@@ -35,7 +35,7 @@ public class GlobalSecurityConfig {
         corsConfig.setAllowedOrigins(List.of("*"));
         corsConfig.setAllowedHeaders(List.of("*"));
         corsConfig.setAllowedMethods(List.of("*"));
-//        corsConfig.setAllowCredentials(true);
+        corsConfig.setAllowCredentials(true);
         corsConfig.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

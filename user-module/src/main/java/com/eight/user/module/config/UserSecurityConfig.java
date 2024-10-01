@@ -1,5 +1,6 @@
 package com.eight.user.module.config;
 
+import com.eight.user.module.constant.RoleType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,8 +22,8 @@ public class UserSecurityConfig {
     public SecurityFilterChain userSecurityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/user/register", "/user/login").permitAll()
-                        .requestMatchers("/user/**").authenticated()
+                        .requestMatchers("/member/register", "/member/login").permitAll()
+                        .requestMatchers("/member/**").authenticated()
                         .anyRequest().denyAll())
                 .build();
     }

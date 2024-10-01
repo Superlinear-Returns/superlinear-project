@@ -10,14 +10,17 @@ import com.eight.user.module.model.UserRole;
 import com.eight.user.module.repository.IRoleRepo;
 import com.eight.user.module.repository.IUserRepo;
 import com.eight.user.module.repository.IUserRoleRepo;
-import com.eight.user.module.service.UserService;
+import com.eight.user.module.service.MemberService;
 import com.eight.user.module.to.LoginTO;
 import com.eight.user.module.to.RegisterTO;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,7 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
-public class UserServiceImpl implements UserService {
+public class MemberServiceImpl implements MemberService {
 
     private final IUserRepo userRepo;
 
@@ -36,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
     private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(IUserRepo userRepo, PasswordEncoder passwordEncoder, IUserRoleRepo userRoleRepo, IRoleRepo roleRepo) {
+    public MemberServiceImpl(IUserRepo userRepo, PasswordEncoder passwordEncoder, IUserRoleRepo userRoleRepo, IRoleRepo roleRepo) {
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
         this.userRoleRepo = userRoleRepo;
@@ -50,8 +53,15 @@ public class UserServiceImpl implements UserService {
         if (!passwordEncoder.matches(loginTO.getPassword(), user.getPassword())) {
             throw new BaseException(StatusCode.PASSWORD_ERR, "Password is incorrect");
         }
+        user.setLastLoginDate(LocalDateTime.now());
+        userRepo.save(user);
+
         List<Role> roles = roleRepo.findByUserId(user.getUserId());
         List<GrantedAuthority> authorities = convertToAuthorities(roles);
+
+        UsernamePasswordAuthenticationToken authenticationToken =
+                new UsernamePasswordAuthenticationToken(user, null, authorities);
+        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
     }
 

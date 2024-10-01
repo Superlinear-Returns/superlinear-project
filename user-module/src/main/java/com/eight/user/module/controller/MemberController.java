@@ -1,7 +1,7 @@
 package com.eight.user.module.controller;
 
 import com.eight.user.module.model.User;
-import com.eight.user.module.service.UserService;
+import com.eight.user.module.service.MemberService;
 import com.eight.user.module.to.LoginTO;
 import com.eight.user.module.to.RegisterTO;
 import jakarta.validation.Valid;
@@ -14,24 +14,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Validated
-@RequestMapping("/user")
+@RequestMapping("/member")
 @RestController
-public class UserController {
+public class MemberController {
 
-    private final UserService userService;
+    private final MemberService memberService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
     }
 
     @PostMapping("/login")
     public ResponseEntity<UserDetails> login(@RequestBody @Valid LoginTO loginTO) {
-        UserDetails user = userService.login(loginTO);
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(memberService.login(loginTO));
     }
 
     @PostMapping("/register")
     public ResponseEntity<User> register(@RequestBody @Valid RegisterTO registerTO) {
-        return ResponseEntity.ok(userService.register(registerTO));
+        return ResponseEntity.ok(memberService.register(registerTO));
     }
 }
