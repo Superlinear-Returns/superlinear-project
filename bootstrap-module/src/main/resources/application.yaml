@@ -41,6 +41,10 @@ spring:
 logging:
   level:
     org:
+      springframework:
+        security: DEBUG
+        web: DEBUG
+        http: DEBUG
       hibernate:
         type:
           descriptor:

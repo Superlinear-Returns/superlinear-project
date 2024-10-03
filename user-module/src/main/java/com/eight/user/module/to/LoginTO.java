@@ -15,4 +15,9 @@ public class LoginTO implements Serializable {
     @NotBlank
     private String password;
 
+    public LoginTO(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
 }

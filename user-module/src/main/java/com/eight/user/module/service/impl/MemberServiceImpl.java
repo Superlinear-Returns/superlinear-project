@@ -13,6 +13,8 @@ import com.eight.user.module.repository.IUserRoleRepo;
 import com.eight.user.module.service.MemberService;
 import com.eight.user.module.to.LoginTO;
 import com.eight.user.module.to.RegisterTO;
+import jakarta.servlet.http.HttpServletRequest;
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +24,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Slf4j
 @Service
@@ -49,9 +53,10 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public UserDetails login(LoginTO loginTO) {
         var username = loginTO.getUsername().toLowerCase().trim();
-        var user = userRepo.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
+        var user = userRepo.findByUsername(username)
+                .orElseThrow(() -> new BaseException(StatusCode.USER_NOT_FOUND, String.format("User not found with username: [%s]", username)));
         if (!passwordEncoder.matches(loginTO.getPassword(), user.getPassword())) {
-            throw new BaseException(StatusCode.PASSWORD_ERR, "Password is incorrect");
+            throw new BaseException(StatusCode.PASSWORD_ERR, String.format("Password not match for user: [%s]", username));
         }
         user.setLastLoginDate(LocalDateTime.now());
         userRepo.save(user);
@@ -61,13 +66,21 @@ public class MemberServiceImpl implements MemberService {
 
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(user, null, authorities);
+
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        if (attributes != null){
+            HttpServletRequest request = attributes.getRequest();
+            request.getSession().setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
+                    SecurityContextHolder.getContext());
+        }
+
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
     }
 
     @Override
     @Transactional(transactionManager = "userModuleTransactionManager")
-    public User register(RegisterTO registerTO) {
+    public UserDetails register(RegisterTO registerTO) {
         checkDuplicateUser(registerTO);
         var username = registerTO.getUsername().toLowerCase();
         var password = passwordEncoder.encode(registerTO.getPassword());
@@ -75,6 +88,7 @@ public class MemberServiceImpl implements MemberService {
         user.setUsername(username);
         user.setPassword(password);
         user.setGender(registerTO.getGender());
+        user.setDateOfBirth(Date.valueOf(registerTO.getDateOfBirth()));
         userRepo.save(user);
 
         var roleId = roleRepo.findIdByRoleType(NORMAL_USER.name());
@@ -82,8 +96,7 @@ public class MemberServiceImpl implements MemberService {
         userRole.setRoleId(roleId);
         userRole.setUserId(user.getUserId());
         userRoleRepo.save(userRole);
-
-        return user;
+        return login(new LoginTO(username, registerTO.getPassword()));
     }
 
     private void checkDuplicateUser(RegisterTO registerTO) {
