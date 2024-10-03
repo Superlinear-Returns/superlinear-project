@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
@@ -18,15 +20,26 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class GlobalSecurityConfig {
 
     @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
     public SecurityFilterChain globalSecurityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
+                .cors(cors -> cors.configurationSource(createCorsConfig()))
                 .csrf(csrf -> csrf
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                         .csrfTokenRequestHandler(createCsrfHandler())
                         .ignoringRequestMatchers("/member/register", "/member/login"))
-                .cors(cors -> cors.configurationSource(createCorsConfig()))
+                // user-module
+                .authorizeHttpRequests(request -> request
+                        .requestMatchers("/member/register", "/member/login").permitAll()
+                        .requestMatchers("/member/**").authenticated()
+                        .requestMatchers("/profile/**").authenticated()
+                        .anyRequest().denyAll())
                 .build();
     }
 

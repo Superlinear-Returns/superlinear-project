@@ -30,7 +30,7 @@ public class MemberController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody @Valid RegisterTO registerTO) {
+    public ResponseEntity<UserDetails> register(@RequestBody @Valid RegisterTO registerTO) {
         return ResponseEntity.ok(memberService.register(registerTO));
     }
 }
