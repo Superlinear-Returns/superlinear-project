@@ -1,29 +1,39 @@
 package com.eight.order.module.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
-@Getter
-@Setter
+@Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "ORDERS")
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ORDER_ID")
-    private Integer orderId;
+    private String orderId;
 
     @Column(name = "CUSTOMER_ID")
-    private Integer customerId;
+    private String customerId;
 
     @Column(name = "ORDER_DATE")
-    private Date OrderDate;
+    private LocalDate orderDate;
 
-    @Column(name = "ORDER_DATA")
-    private String OrderData;
+    @Column(name = "SALER_ID")
+    private String salerId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "ORDER_STATUS")
+    private OrderStatusEnum orderStatus;
+
+    @Column(name = "TOTAL_AMOUNT")
+    private BigDecimal totalAmount;
 
 }
+
+
