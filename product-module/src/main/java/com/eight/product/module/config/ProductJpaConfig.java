@@ -1,4 +1,4 @@
-package com.eight.product_module.config;
+package com.eight.product.module.config;
 import javax.sql.DataSource;
 
 import jakarta.persistence.EntityManagerFactory;
@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableJpaRepositories(
-        basePackages = "com.eight.product_module.repository",
+        basePackages = "com.eight.product.module.repository",
         entityManagerFactoryRef = "productModuleEntityManagerFactory",
         transactionManagerRef = "productModuleTransactionManager"
 )
@@ -29,7 +29,7 @@ public class ProductJpaConfig {
             @Qualifier("productModuleDataSource") DataSource dataSource)
     {
         return builder.dataSource(dataSource)
-                .packages("com.eight.product_module.model")
+                .packages("com.eight.product.module.model")
                 .persistenceUnit("productModule")
                 .build();
     }

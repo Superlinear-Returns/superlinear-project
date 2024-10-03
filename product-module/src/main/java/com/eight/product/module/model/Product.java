@@ -1,5 +1,6 @@
-package com.eight.product_module.model;
+package com.eight.product.module.model;
 
+import com.eight.product.module.constant.ProductCategory;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +10,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "PRODUCT")
+@Table(name = "product")
 public class Product {
     @Id
     @Column(name="PRODUCT_ID")
@@ -22,7 +23,7 @@ public class Product {
     @Column(name="DESCRIPTION")
     private String description;
     @Column(name="CATEGORY")
-    private String category;
+    private String  category;
     @Column(name="CREATED_TIME")
     private Date createdTime;
     @Column(name="LAST_MODIFIED_TIME")

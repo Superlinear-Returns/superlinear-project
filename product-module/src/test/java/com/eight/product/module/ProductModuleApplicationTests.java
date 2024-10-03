@@ -1,4 +1,4 @@
-package com.eight.product_module;
+package com.eight.product.module;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

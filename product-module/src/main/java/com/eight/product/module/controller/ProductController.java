@@ -1,8 +1,8 @@
-package com.eight.product_module.controller;
+package com.eight.product.module.controller;
 
-import com.eight.product_module.dto.ProductParams;
-import com.eight.product_module.model.Product;
-import com.eight.product_module.service.ProductService;
+import com.eight.product.module.dto.ProductParams;
+import com.eight.product.module.model.Product;
+import com.eight.product.module.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
