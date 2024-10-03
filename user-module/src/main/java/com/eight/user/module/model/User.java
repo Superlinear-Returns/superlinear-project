@@ -1,11 +1,13 @@
 package com.eight.user.module.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.sql.Date;
 import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,16 +15,17 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@JsonIgnoreProperties({"createTime", "updateTime"})
 @Table(name = "USER")
-public class User {
+public class User extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID")
     private Integer userId;
 
-    @Column(name = "USER_NAME")
-    private String userName;
+    @Column(name = "USERNAME")
+    private String username;
 
     @Column(name = "PASSWORD")
     private String password;
@@ -30,18 +33,16 @@ public class User {
     @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "PHONE")
-    private String phone;
+    @Column(name = "PHONE_NUMBER")
+    private String phoneNumber;
 
-    @Column(name = "ADDRESS")
-    private String address;
+    @Column(name = "DATE_OF_BIRTH")
+    private Date dateOfBirth;
 
-    @Column(name = "CREATE_TIME")
-    private LocalDateTime createTime;
+    @Column(name = "GENDER")
+    private Integer gender;
 
-    @Column(name = "UPDATE_TIME")
-    private LocalDateTime updateTime;
+    @Column(name = "LAST_LOGIN_DATE")
+    private LocalDateTime lastLoginDate;
 
-    @Column(name = "VERSION")
-    private Integer version;
 }

@@ -1,29 +1,50 @@
 server:
   port: 8080
 spring:
-  datasource:
-    user-module:
-      jdbc-url: # your jdbc url
-      username: # your username
-      password: # your password
-      driver-class-name: com.mysql.cj.jdbc.Driver
-    order-module:
-      jdbc-url: # your jdbc url
-      username: # your username
-      password: # your password
-      driver-class-name: com.mysql.cj.jdbc.Driver
   application:
     name: bootstrap-module
-  jpa:
-    show-sql: true
-    properties:
+  datasource:
+
+    user-module:
+      jdbc-url: jdbc:mysql://spl-db01.cv64a48eefrj.ap-northeast-1.rds.amazonaws.com:3306/SPL_MEMBER?serverTimezone=Asia/Taipei&characterEncoding=utf-8
+      username: admin
+      password: 06494784St1120224
+      driver-class-name: com.mysql.cj.jdbc.Driver
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.MySQL8Dialect
         ddl-auto: update
+
+    order-module:
+      jdbc-url: jdbc:mysql://localhost:3306/
+      username: root
+      password: 06494784
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        ddl-auto: update
+
+    product-module:
+      jdbc-url: jdbc:mysql://localhost:3306/
+      username: root
+      password: 06494784
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        ddl-auto: update
+
+  jpa:
+    show-sql: true
+
 logging:
   level:
     org:
+      springframework:
+        security: DEBUG
+        web: DEBUG
+        http: DEBUG
       hibernate:
         type:
           descriptor:
