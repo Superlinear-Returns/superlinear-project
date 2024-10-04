@@ -10,7 +10,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "product")
+@Table(name = "PRODUCT")
 public class Product {
     @Id
     @Column(name="PRODUCT_ID")
@@ -24,8 +24,8 @@ public class Product {
     private String description;
     @Column(name="CATEGORY")
     private String  category;
-    @Column(name="CREATED_TIME")
-    private Date createdTime;
-    @Column(name="LAST_MODIFIED_TIME")
-    private Date lastModifiedTime;
+    @Column(name="CREATE_TIME")
+    private Date createTime;
+    @Column(name="UPDATE_TIME")
+    private Date updateTime;
 }

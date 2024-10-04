@@ -20,8 +20,8 @@ public class ProductDetail {
     private String specification;
     @Column(name="ADDITIONAL_CATEGORIES")
     private String additionalCategories;
-    @Column(name="CREATED_TIME")
-    private Date createdTime;
-    @Column(name="LAST_MODIFIED_TIME")
-    private Date lastModifiedTime;
+    @Column(name="CREATE_TIME")
+    private Date createTime;
+    @Column(name="UPDATE_TIME")
+    private Date updateTime;
 }

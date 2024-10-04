@@ -27,8 +27,8 @@ public class ProductServiceImpl implements ProductService {
     public Long addProduct(ProductParams productParams) {
         Product product = convertDtoToEntity(productParams, Product.class);
         System.out.println("11"+product.getPrice());
-        product.setCreatedTime(new Date());
-        product.setLastModifiedTime(new Date());
+        product.setCreateTime(new Date());
+        product.setUpdateTime(new Date());
 
         productRepository.save(product);
         return product.getProductId();
@@ -42,7 +42,7 @@ public class ProductServiceImpl implements ProductService {
             oldProduct.setPrice(productParams.getPrice());
             oldProduct.setCategory(productParams.getCategory().name());
             oldProduct.setDescription(productParams.getDescription());
-            oldProduct.setLastModifiedTime(new Date());
+            oldProduct.setUpdateTime(new Date());
             return productRepository.save(oldProduct);
         }else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);

@@ -36,9 +36,13 @@ public class GlobalSecurityConfig {
                         .ignoringRequestMatchers("/member/register", "/member/login"))
                 // user-module
                 .authorizeHttpRequests(request -> request
+                        // user-module
                         .requestMatchers("/member/register", "/member/login").permitAll()
                         .requestMatchers("/member/**").authenticated()
                         .requestMatchers("/profile/**").authenticated()
+
+                        // product-module
+                        .requestMatchers("/products").permitAll()
                         .anyRequest().denyAll())
                 .build();
     }

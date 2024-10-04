@@ -22,8 +22,8 @@ public class Product_Image {
     private String imageType;
     @Column(name="IMAGE_SORT")
     private Integer imageSort;
-    @Column(name="CREATED_TIME")
-    private Date createdTime;
-    @Column(name="LAST_MODIFIED_TIME")
-    private Date lastModifiedTime;
+    @Column(name="CREATE_TIME")
+    private Date createTime;
+    @Column(name="UPDATE_TIME")
+    private Date updateTime;
 }
