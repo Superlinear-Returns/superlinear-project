@@ -1,6 +1,6 @@
 package com.eight.product.module.service.impl;
 
-import com.eight.product.module.dto.ProductParams;
+import com.eight.product.module.dto.ProductTo;
 import com.eight.product.module.repository.ProductRepository;
 import com.eight.product.module.service.ProductService;
 import com.eight.product.module.model.Product;
@@ -24,9 +24,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Long addProduct(ProductParams productParams) {
-        Product product = convertDtoToEntity(productParams, Product.class);
-        System.out.println("11"+product.getPrice());
+    public Long addProduct(ProductTo productTo) {
+        Product product = convertDtoToEntity(productTo, Product.class);
         product.setCreateTime(new Date());
         product.setUpdateTime(new Date());
 
@@ -35,13 +34,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product updateProduct(ProductParams productParams, Long productId) {
+    public Product updateProduct(ProductTo productTo, Long productId) {
         Product oldProduct = productRepository.findById(productId).orElse(null);
         if(oldProduct != null){
-            oldProduct.setProductName(productParams.getProductName());
-            oldProduct.setPrice(productParams.getPrice());
-            oldProduct.setCategory(productParams.getCategory().name());
-            oldProduct.setDescription(productParams.getDescription());
+            oldProduct.setProductName(productTo.getProductName());
+            oldProduct.setPrice(productTo.getPrice());
+            oldProduct.setCategory(productTo.getCategory().name());
+            oldProduct.setDescription(productTo.getDescription());
             oldProduct.setUpdateTime(new Date());
             return productRepository.save(oldProduct);
         }else {
