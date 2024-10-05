@@ -1,6 +1,7 @@
 package com.eight.product.module.service.impl;
 
 import com.eight.product.module.dto.ProductTo;
+import com.eight.product.module.exception.ProductBaseException;
 import com.eight.product.module.repository.ProductRepository;
 import com.eight.product.module.service.ProductService;
 import com.eight.product.module.model.Product;
@@ -19,8 +20,9 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public Optional<Product> getProductById(Long productId) {
-        return productRepository.findById(productId);
+    public Product getProductById(Long productId) {
+        return productRepository.findById(productId).
+                orElseThrow(()->new ProductBaseException(HttpStatus.BAD_REQUEST.toString(), String.format("ProductId: %s \n商品不存在", productId)));
     }
 
     @Override

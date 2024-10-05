@@ -20,18 +20,14 @@ public class ProductController {
     @GetMapping
     @Operation(summary = "getProductById", description = "使用productId獲取商品")
     public ResponseEntity<Product> getProductById(@RequestParam("productId") Long productId) {
-        Product defaultProduct = new Product();
-        return ResponseEntity.ok(productService
-                .getProductById(productId).orElse(defaultProduct));
+        return ResponseEntity.ok(productService.getProductById(productId));
     }
 
     @PostMapping("/add_product")
     @Operation(summary = "addProduct", description = "新增商品")
     public ResponseEntity<Product> addProduct(@RequestBody @Valid ProductTo productTo) {
-        Product defaultProduct = new Product();
         Long productId = productService.addProduct(productTo);
-        Product product = productService.getProductById(productId).orElse(defaultProduct);
-        return ResponseEntity.status(HttpStatus.CREATED).body(product);
+        return ResponseEntity.status(HttpStatus.CREATED).body(productService.getProductById(productId));
     }
 
     @PutMapping("/update_product/{productId}")
