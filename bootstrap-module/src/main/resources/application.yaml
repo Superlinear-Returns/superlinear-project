@@ -4,39 +4,32 @@ spring:
   application:
     name: bootstrap-module
   datasource:
-
     user-module:
       jdbc-url: jdbc:mysql://spl-db01.cv64a48eefrj.ap-northeast-1.rds.amazonaws.com:3306/SPL_MEMBER?serverTimezone=Asia/Taipei&characterEncoding=utf-8
       username: admin
       password: 06494784St1120224
       driver-class-name: com.mysql.cj.jdbc.Driver
-      hibernate:
-        format_sql: true
-        dialect: org.hibernate.dialect.MySQL8Dialect
-        ddl-auto: update
 
     order-module:
-      jdbc-url: jdbc:mysql://localhost:3306/
-      username: root
-      password: 06494784
+      jdbc-url: jdbc:mysql://superlinear-db-order-module.chkkgco4sger.ap-northeast-1.rds.amazonaws.com:3306/ORDER_MODULE?serverTimezone=Asia/Taipei&characterEncoding=utf-8
+      username: admin
+      password: Az456789
       driver-class-name: com.mysql.cj.jdbc.Driver
-      hibernate:
-        format_sql: true
-        dialect: org.hibernate.dialect.MySQL8Dialect
-        ddl-auto: update
 
     product-module:
-      jdbc-url: jdbc:mysql://localhost:3306/
-      username: root
-      password: 06494784
+      jdbc-url: jdbc:mysql://rds-mysql-superlinear.cjes2q0u64tz.us-east-1.rds.amazonaws.com:3306/SPL_PRODUCT?serverTimezone=Asia/Taipei&characterEncoding=utf-8
+      username: admin
+      password: Fubon4924
       driver-class-name: com.mysql.cj.jdbc.Driver
-      hibernate:
-        format_sql: true
-        dialect: org.hibernate.dialect.MySQL8Dialect
-        ddl-auto: update
 
   jpa:
     show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
 
 logging:
   level:

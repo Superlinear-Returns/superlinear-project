@@ -18,6 +18,10 @@ import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -43,11 +47,25 @@ public class MemberServiceImpl implements MemberService {
 
     private final PasswordEncoder passwordEncoder;
 
+    private final ConcurrentHashMap<String, LoginAttemptRecord> loginAttemptCache = new ConcurrentHashMap<>();
+
     public MemberServiceImpl(IUserRepo userRepo, PasswordEncoder passwordEncoder, IUserRoleRepo userRoleRepo, IRoleRepo roleRepo) {
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
         this.userRoleRepo = userRoleRepo;
         this.roleRepo = roleRepo;
+    }
+
+    @Getter
+    @Setter
+    private static class LoginAttemptRecord {
+        private int attempt;
+        private boolean isLocked;
+        private LocalDateTime lastAttemptTime;
+
+        public void incrementAttempt() {
+            attempt++;
+        }
     }
 
     @Override
