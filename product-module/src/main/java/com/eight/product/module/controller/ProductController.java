@@ -1,6 +1,6 @@
 package com.eight.product.module.controller;
 
-import com.eight.product.module.dto.ProductParams;
+import com.eight.product.module.dto.ProductTo;
 import com.eight.product.module.model.Product;
 import com.eight.product.module.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,18 +27,18 @@ public class ProductController {
 
     @PostMapping("/add_product")
     @Operation(summary = "addProduct", description = "新增商品")
-    public ResponseEntity<Product> addProduct(@RequestBody @Valid ProductParams productParams) {
+    public ResponseEntity<Product> addProduct(@RequestBody @Valid ProductTo productTo) {
         Product defaultProduct = new Product();
-        Long productId = productService.addProduct(productParams);
+        Long productId = productService.addProduct(productTo);
         Product product = productService.getProductById(productId).orElse(defaultProduct);
         return ResponseEntity.status(HttpStatus.CREATED).body(product);
     }
 
     @PutMapping("/update_product/{productId}")
     @Operation(summary = "updateProduct", description = "更新商品")
-    public ResponseEntity<Product> updateProduct(@RequestBody @Valid ProductParams productParams,
+    public ResponseEntity<Product> updateProduct(@RequestBody @Valid ProductTo productTo,
                                                  @PathVariable Long productId) {
-        Product product = productService.updateProduct(productParams, productId);
+        Product product = productService.updateProduct(productTo, productId);
         return ResponseEntity.status(HttpStatus.OK).body(product);
     }
 
