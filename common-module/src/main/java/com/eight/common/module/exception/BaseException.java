@@ -1,4 +1,4 @@
-package com.eight.user.module.core.exception;
+package com.eight.common.module.exception;
 
 import lombok.Getter;
 import lombok.Setter;
