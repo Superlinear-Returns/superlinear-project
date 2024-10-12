@@ -34,15 +34,16 @@ public class GlobalSecurityConfig {
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                         .csrfTokenRequestHandler(createCsrfHandler())
                         .ignoringRequestMatchers("/member/register", "/member/login"))
-                // user-module
+
                 .authorizeHttpRequests(request -> request
+
                         // user-module
                         .requestMatchers("/member/register", "/member/login").permitAll()
                         .requestMatchers("/member/**").authenticated()
                         .requestMatchers("/profile/**").authenticated()
 
                         // product-module
-                        .requestMatchers("/products").permitAll()
+                        .requestMatchers("/products/**").authenticated()
                         .anyRequest().denyAll())
                 .build();
     }
