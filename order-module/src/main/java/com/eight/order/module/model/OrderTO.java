@@ -7,19 +7,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
 @Data
 public class OrderTO {
 
     @NotBlank
-    private String orderId;
+    private int orderId;
 
-    private String customerId;
+    private int customerId;
 
-    private LocalDate orderDate;
+    private Timestamp orderDate;
 
-    private String salerId;
+    private int salerId;
 
     private OrderStatusEnum orderStatus;
 

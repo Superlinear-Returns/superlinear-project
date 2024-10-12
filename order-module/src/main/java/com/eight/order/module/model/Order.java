@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -11,25 +12,24 @@ import java.util.Date;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "ORDERS")
+@Table(name = "SPL_ORDER")
 public class Order {
 
     @Id
     @Column(name = "ORDER_ID")
-    private String orderId;
+    private int orderId;
 
     @Column(name = "CUSTOMER_ID")
-    private String customerId;
+    private int customerId;
 
     @Column(name = "ORDER_DATE")
-    private LocalDate orderDate;
+    private Timestamp orderDate;
 
     @Column(name = "SALER_ID")
-    private String salerId;
+    private int salerId;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "ORDER_STATUS")
-    private OrderStatusEnum orderStatus;
+    private int orderStatus;
 
     @Column(name = "TOTAL_AMOUNT")
     private BigDecimal totalAmount;

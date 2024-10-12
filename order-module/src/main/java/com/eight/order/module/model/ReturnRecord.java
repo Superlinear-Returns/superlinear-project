@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
 @Data
@@ -15,13 +16,13 @@ import java.time.LocalDate;
 public class ReturnRecord {
     @Id
     @Column(name = "RETURN_RECORD_ID")
-    private String returnRecordId;
+    private int returnRecordId;
 
     @Column(name = "ORDER_ID")
-    private String orderId;
+    private int orderId;
 
     @Column(name = "RETURN_DATE")
-    private LocalDate returnDate;
+    private Timestamp returnDate;
 
     @Column(name = "RETURN_REASON")
     private String returnReason;

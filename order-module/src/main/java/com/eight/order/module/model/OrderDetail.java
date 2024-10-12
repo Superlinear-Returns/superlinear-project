@@ -16,13 +16,13 @@ public class OrderDetail {
 
     @Id
     @Column(name = "ORDER_DETAIL_ID")
-    private String orderDetailId;
+    private int orderDetailId;
 
     @Column(name = "ORDER_ID")
-    private String orderId;
+    private int orderId;
 
     @Column(name = "PRODUCT_ID")
-    private Long productId;
+    private int productId;
 
     @Column(name = "PRODUCT_QUANTITY")
     private int productQuantity;
