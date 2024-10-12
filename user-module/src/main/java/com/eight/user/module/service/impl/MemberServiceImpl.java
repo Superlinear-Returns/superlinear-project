@@ -2,8 +2,8 @@ package com.eight.user.module.service.impl;
 
 import static com.eight.user.module.constant.RoleType.*;
 
-import com.eight.user.module.constant.StatusCode;
-import com.eight.user.module.core.exception.BaseException;
+import com.eight.common.module.constant.StatusCode;
+import com.eight.common.module.exception.BaseException;
 import com.eight.user.module.model.Role;
 import com.eight.user.module.model.User;
 import com.eight.user.module.model.UserRole;

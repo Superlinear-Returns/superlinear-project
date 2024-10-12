@@ -1,4 +1,4 @@
-package com.eight.user.module.core.exception;
+package com.eight.common.module.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +11,6 @@ public class BaseExceptionHandler {
     @ExceptionHandler(BaseException.class)
     public ResponseEntity<BaseExceptionResponseTO> handleBaseExceptionToResponse(BaseException e) {
         BaseExceptionResponseTO baseExceptionResponseTO = new BaseExceptionResponseTO(e.getStatusCode(), e.getMessage());
-        return new ResponseEntity<>(baseExceptionResponseTO, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(baseExceptionResponseTO, HttpStatus.OK);
     }
 }

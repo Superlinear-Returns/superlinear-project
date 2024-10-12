@@ -1,7 +1,7 @@
 package com.eight.user.module.service.impl;
 
-import com.eight.user.module.constant.StatusCode;
-import com.eight.user.module.core.exception.BaseException;
+import com.eight.common.module.constant.StatusCode;
+import com.eight.common.module.exception.BaseException;
 import com.eight.user.module.model.Blacklist;
 import com.eight.user.module.repository.IBlacklistRepo;
 import com.eight.user.module.service.BlacklistService;

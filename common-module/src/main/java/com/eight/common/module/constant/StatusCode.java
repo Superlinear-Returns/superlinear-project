@@ -1,4 +1,4 @@
-package com.eight.user.module.constant;
+package com.eight.common.module.constant;
 
 public interface StatusCode {
 

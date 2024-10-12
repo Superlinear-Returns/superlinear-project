@@ -1,7 +1,7 @@
 package com.eight.user.module.service.process.login;
 
-import com.eight.user.module.constant.StatusCode;
-import com.eight.user.module.core.exception.BaseException;
+import com.eight.common.module.constant.StatusCode;
+import com.eight.common.module.exception.BaseException;
 import org.springframework.stereotype.Component;
 
 @Component
